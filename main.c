@@ -29,4 +29,6 @@ int main(){
             printf("Sair...\n");
 
     } while(opcao >= 0);
+
+    fs[3](tarefas, &pos);
 }
