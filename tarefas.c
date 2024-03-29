@@ -2,7 +2,20 @@
 #include "tarefas.h"
 
 ERROS criar(Tarefa tarefas[], int *pos){
-    printf("Funcao de criar tarefa\n");
+    if(*pos >= TOTAL)
+        return MAX_TAREFA;
+
+    printf("Entre com a prioridade: ");
+    scanf("%d", &tarefas[*pos].prioridade);
+    clearBuffer();
+    printf("Entre com a categoria: ");
+    fgets(tarefas[*pos].categoria, 100, stdin);
+
+    printf("Entre com a descricao: ");
+    fgets(tarefas[*pos].descricao, 300, stdin);
+
+    *pos = *pos + 1;
+
     return OK;
 }
 
@@ -24,4 +37,9 @@ ERROS salvar(Tarefa tarefas[], int *pos){
 ERROS carregar(Tarefa tarefas[], int *pos){
     printf("Funcao de carregar tarefas\n");
     return OK;
+}
+
+void clearBuffer(){
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
