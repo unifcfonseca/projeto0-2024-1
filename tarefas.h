@@ -19,3 +19,4 @@ ERROS salvar(Tarefa tarefas[], int *pos);
 ERROS carregar(Tarefa tarefas[], int *pos);
 
 void clearBuffer();
+void printErro(ERROS e);
