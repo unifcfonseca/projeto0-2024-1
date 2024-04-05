@@ -22,9 +22,9 @@ int main(){
 
         scanf("%d", &opcao);
         opcao--;
-        if(opcao > 2)
+        if(opcao > 2){
             printf("Opcao invalida\n");
-        else if(opcao >= 0)
+        }else if(opcao >= 0)
            erro= fs[opcao](tarefas, &pos);
         if(erro !=OK){
           printf("Erro ao executar a operação %d\n",erro);
