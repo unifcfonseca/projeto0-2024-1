@@ -58,12 +58,26 @@ ERROS deletar(Tarefa tarefas[], int *pos) {
 ERROS listar(Tarefa tarefas[], int *pos) {
   if (*pos == 0)
     return SEM_TAREFAS;
-
+  int co = 0;
+  char categoria_acha[CATEGORIA_MAX];
+  printf("Entre com a categoria da tarefa a ser listada. \n");
+  printf("(para listar todas tarefas deixe esse espaço em branco): ");
+  
+  clearBuffer();
+  fgets(categoria_acha, CATEGORIA_MAX, stdin);
+  categoria_acha[strcspn(categoria_acha, "\n")] = '\0';
+  
   for (int i = 0; i < *pos; i++) {
-    printf("Pos: %d\t", i + 1);
-    printf("Prioridade: %d\t", tarefas[i].prioridade);
-    printf("Categoria: %s\t", tarefas[i].categoria);
-    printf("Descricao: %s\n", tarefas[i].descricao);
+    if(!strcmp(categoria_acha,tarefas[i].categoria)  || !strcmp(categoria_acha,"\0") ){
+      printf("Pos: %d\t", i + 1);
+      printf("Prioridade: %d\t", tarefas[i].prioridade);
+      printf("Categoria: %s\t", tarefas[i].categoria);
+      printf("Descricao: %s\n", tarefas[i].descricao);
+      co++;
+    }
+  }
+  if(co==0){
+    printf("Nenhuma tarefa com essa categoria encontrada. \n");
   }
 
   return OK;
