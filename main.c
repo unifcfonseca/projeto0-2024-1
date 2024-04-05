@@ -24,17 +24,20 @@ int main(){
         opcao--;
         if(opcao > 2){
             printf("Opcao invalida\n");
-        }else if(opcao >= 0)
-           erro= fs[opcao](tarefas, &pos);
-        if(erro !=OK){
-          printf("Erro ao executar a operação %d\n",erro);
-        break;
+        }else if(opcao >= 0){
+          erro= fs[opcao](tarefas, &pos);
+          if(erro !=OK){
+            printf("Erro ao executar a operação.\n");
+            printErro(erro);
+          
+          }
+          
         }
            else{
              printf("sair...\n");
            }
 
-    } while(erro !=OK);
+    } while(opcao>=0);
  
     fs[3](tarefas, &pos);
   return OK;

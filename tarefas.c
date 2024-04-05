@@ -126,3 +126,36 @@ void clearBuffer() {
   while ((c = getchar()) != '\n' && c != EOF)
     ;
 }
+void printErro(ERROS e){
+  switch(e){
+    case 0:
+    printf("OK\n");
+    break;
+      case 1:
+    printf("Maximo de tarefas atingido!\n");
+    break;
+        case 2:
+    printf("Sem tarefas no arquivo!\n");
+    break;
+          case 3:
+    printf("Tarefa não encontrada!\n");
+    break;
+            case 4:
+    printf("Erro ao abrir o arquivo!\n");
+    break;
+              case 5:
+    printf("Erro ao fechar o arquivo!\n");
+    break;
+                case 6:
+    printf("Erro ao escrever no arquivo!\n");
+    break;
+                  case 7:
+    printf("Erro ao ler o arquivo!\n");
+    break;
+                    case 8:
+    printf("Prioridade inserida invalida!\n");
+    break;
+    default:
+    printf("Erro desconhecido!\n");
+  }
+}
