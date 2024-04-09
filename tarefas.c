@@ -120,7 +120,16 @@ ERROS listar(Tarefa tarefas[], int *pos) {
 }
 
 ERROS salvar(Tarefa tarefas[], int *pos) {
-  FILE *f = fopen("tarefas.bin", "wb");
+  char filename[300];
+  printf("Selecione o arquivo para salvar as tarefas! (deixe vazio para arquivo padrão) \n");
+  clearBuffer();
+  fgets(filename,300,stdin);
+  if(strlen(filename)==0){
+    strcpy(filename,"tarefas.");
+  }
+  filename[strcspn(filename, "\n")] = '.';
+  strcat(filename,"bin");
+  FILE *f = fopen(filename, "wb");
   if (f == NULL)
     return ABRIR;
 
@@ -139,7 +148,15 @@ ERROS salvar(Tarefa tarefas[], int *pos) {
 }
 
 ERROS carregar(Tarefa tarefas[], int *pos) {
-  FILE *f = fopen("tarefas.bin", "rb");
+  char filename[300];
+  printf("Selecione o arquivo para leitura!(deixe vazio para arquivo padrão) \n");
+    fgets(filename,300,stdin);
+  if(strlen(filename)==0){
+    strcpy(filename,"tarefas.");
+  }
+    filename[strcspn(filename, "\n")] = '.';
+    strcat(filename,"bin");
+  FILE *f = fopen(filename, "rb");
   if (f == NULL){
     return ABRIR;
   }
