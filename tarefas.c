@@ -56,8 +56,10 @@ ERROS deletar(Tarefa tarefas[], int *pos) {
 }
 
 ERROS listar(Tarefa tarefas[], int *pos) {
-  if (*pos == 0)
+  if (*pos == 0){
     return SEM_TAREFAS;
+  }
+    
   int co = 0;
   char categoria_acha[CATEGORIA_MAX];
   printf("Entre com a categoria da tarefa a ser listada. \n");
@@ -78,9 +80,43 @@ ERROS listar(Tarefa tarefas[], int *pos) {
   }
   if(co==0){
     printf("Nenhuma tarefa com essa categoria encontrada. \n");
-  }
+    return NAO_ENCONTRADO;
+  }else{
+    Tarefa lista[co];
+    int simNao;
+    char nome[DESCRICAO_MAX+3];
 
+    printf("Deseja salvar essa lista em um arquivo de texto?(1 = Sim/2 = Nao) \n");
+    scanf("%d", &simNao);
+    if(simNao==1){
+      
+      clearBuffer();
+      printf("Entre com o nome do arquivo: ");
+      fgets(nome, DESCRICAO_MAX, stdin);
+      nome[strcspn(nome,"\n")] = '.';
+      strcat(nome,"txt");
+      FILE *f = fopen(nome, "w");
+      if (f == NULL)
+        return CRIAR;
+
+      for (int i = 0; i < *pos; i++) {
+        if(!strcmp(categoria_acha,tarefas[i].categoria)  || !strcmp(categoria_acha,"\0") ){
+          fprintf(f,"Pos: %d\t", i + 1);
+          fprintf(f,"Prioridade: %d\t", tarefas[i].prioridade);
+          fprintf(f,"Categoria: %s\t", tarefas[i].categoria);
+          fprintf(f,"Descricao: %s\n", tarefas[i].descricao);
+          co++;
+        }
+      }
+      
+      if (fclose(f))
+        return FECHAR;
+
+      printf("%s criado com sucesso \n",nome);
+      
+  }
   return OK;
+}
 }
 
 ERROS salvar(Tarefa tarefas[], int *pos) {
@@ -104,19 +140,23 @@ ERROS salvar(Tarefa tarefas[], int *pos) {
 
 ERROS carregar(Tarefa tarefas[], int *pos) {
   FILE *f = fopen("tarefas.bin", "rb");
-  if (f == NULL)
+  if (f == NULL){
     return ABRIR;
-
+  }
+    
   int qtd = fread(tarefas, TOTAL, sizeof(Tarefa), f);
-  if (qtd == 0)
+  if (qtd == 0){
     return LER;
+  }
 
   qtd = fread(pos, 1, sizeof(int), f);
-  if (qtd == 0)
+  if (qtd == 0){
     return LER;
+  }
 
-  if (fclose(f))
+  if (fclose(f)){
     return FECHAR;
+  }
 
   return OK;
 }
@@ -126,6 +166,7 @@ void clearBuffer() {
   while ((c = getchar()) != '\n' && c != EOF)
     ;
 }
+  
 void printErro(ERROS e){
   switch(e){
     case 0:
@@ -153,6 +194,9 @@ void printErro(ERROS e){
     printf("Erro ao ler o arquivo!\n");
     break;
                     case 8:
+    printf("Prioridade inserida invalida!\n");
+    break;
+                      case 9:
     printf("Prioridade inserida invalida!\n");
     break;
     default:
