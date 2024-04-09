@@ -112,7 +112,7 @@ ERROS listar(Tarefa tarefas[], int *pos) {
       if (fclose(f))
         return FECHAR;
 
-      printf("%s criado com sucesso \n",nome);
+      printf("%s criado com sucesso! \n",nome);
       
   }
   return OK;
