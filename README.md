@@ -30,6 +30,10 @@ O programa é capaz de armazenar até 100 tarefas e permitir que o usuário cada
 
 # Guia para usuário 
 
+# Inicialização
+
+Ao iniciar o progama vai ser perguntado ao usuario de qual arquivo carregar os dados(se o usuario deixar o campo vazio os dados serão carregados de um arquivo padrão).
+
 # Menu
 
 O menu sera apresentado para o usuário da segunte maneira
@@ -59,11 +63,14 @@ E assim que o usuário digitar a posição, a tarefa sera excluida
 
 # 3 - Listar Tarefas
 
-Se o usuario selecionar o número "3" no teclado, ele vai ser direcionado para a sua propria lista de tarefas. Indicada pela ordem que criou.
+Se o usuario selecionar o número "3" no teclado, ele vai ser vai entrar na função de listamento de tarefas.
+O progama pedira uma categoria para ser listada (ou nenhuma e lista todas), ao selecionar a categoria, o progama lista todas as tarefas com essa categoria.
+O usuario tem a opção de salvar essa lista em um txt.
 
 # 0 - Sair
 
-Se o usuario selecionar o número "0" no teclado, ele vai sair do programa
+Se o usuario selecionar o número "0" no teclado, ele vai sair do programa.
+Antes do progama fechar ele vai perguntar ao usuario qual arquivo salvar os dados(se o usuario deixar o campo vazio os dados serão salvos em um arquivo padrão).
 
 
 
